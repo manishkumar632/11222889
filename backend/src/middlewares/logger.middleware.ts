@@ -1,9 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  Logger,
+  Logger as ImportedLogger,
   LogLevel,
   Stack,
   BackendPackage as ImportedBackendPackage,
+  SharedPackage,
+  Package as ImportedPackage,
+  FrontendPackage,
 } from "logging-middleware";
 
 // Extended BackendPackage enum with UTILS
@@ -18,6 +21,40 @@ export enum BackendPackage {
   ROUTE = "route",
   SERVICE = "service",
   UTILS = "utils",
+}
+
+// Type for our package to work with the logging-middleware
+export type Package = BackendPackage | FrontendPackage | SharedPackage;
+
+// Create our own Logger wrapper that works with our BackendPackage
+export class Logger {
+  public static debug(pkg: Package, message: string, stack?: Stack): void {
+    ImportedLogger.debug(pkg as ImportedPackage, message, stack);
+  }
+
+  public static info(pkg: Package, message: string, stack?: Stack): void {
+    ImportedLogger.info(pkg as ImportedPackage, message, stack);
+  }
+
+  public static warn(pkg: Package, message: string, stack?: Stack): void {
+    ImportedLogger.warn(pkg as ImportedPackage, message, stack);
+  }
+
+  public static error(pkg: Package, message: string, stack?: Stack): void {
+    ImportedLogger.error(pkg as ImportedPackage, message, stack);
+  }
+
+  public static fatal(pkg: Package, message: string, stack?: Stack): void {
+    ImportedLogger.fatal(pkg as ImportedPackage, message, stack);
+  }
+
+  public static setAuthToken(token: string): void {
+    ImportedLogger.setAuthToken(token);
+  }
+
+  public static setLoggingApi(url: string): void {
+    ImportedLogger.setLoggingApi(url);
+  }
 }
 
 // Create our own logger middleware wrapper that works with Express types
@@ -53,6 +90,6 @@ export const loggerMiddleware = (
 };
 
 // Export everything else from the shared package
-export { Logger, LogLevel, Stack };
+export { LogLevel, Stack, FrontendPackage, SharedPackage };
 
 export default Logger;

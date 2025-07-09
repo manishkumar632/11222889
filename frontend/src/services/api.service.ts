@@ -3,7 +3,7 @@ import { Logger, FrontendPackage } from "../utils/logger";
 
 // API base URL
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
+  process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";
 
 // URL interface from the backend
 export interface UrlData {

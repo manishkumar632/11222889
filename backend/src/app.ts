@@ -9,7 +9,9 @@ import { loggerMiddleware } from "./middlewares/logger.middleware";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+// Force use port 3001
+process.env.PORT = "3001";
+const PORT = 3001;
 
 // Middleware
 app.use(cors());
@@ -17,13 +19,13 @@ app.use(express.json());
 // Apply logger middleware
 app.use(loggerMiddleware);
 
-// Routes
-app.use("/", urlRoutes);
-
-// Health check endpoint
+// Health check endpoint - moved above URL routes to avoid being caught by the catch-all route
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
+
+// Routes
+app.use("/", urlRoutes);
 
 // Connect to MongoDB
 mongoose
