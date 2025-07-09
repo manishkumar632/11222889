@@ -172,13 +172,6 @@ The application uses a centralized logging system that sends logs to an evaluati
 - Timestamp
 - Message
 
-## Contributors
-
-- [Your Name](https://github.com/yourusername) - Initial work
-
-## License
-
-This project is licensed under the ISC License
 
 ## Acknowledgments
 
