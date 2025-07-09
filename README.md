@@ -94,7 +94,7 @@ url-shortener/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/url-shortener.git
+git clone <repository-url>
 cd url-shortener
 ```
 
