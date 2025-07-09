@@ -15,7 +15,7 @@ A full-stack URL shortener application with detailed analytics and centralized l
 - Standardized logging levels (debug, info, warn, error, fatal)
 - Support for both frontend and backend applications
 - Express middleware for request/response logging
-- Configurable logging endpoint
+- Configurable logging endpoint with authorization token
 
 ### Backend
 
@@ -65,15 +65,20 @@ A full-stack URL shortener application with detailed analytics and centralized l
    npm install
    ```
 
-3. Create a `.env` file with the following content:
+3. Link the logging-middleware package:
+
+   ```
+   npm link ../logging-middleware
+   ```
+
+4. Create a `.env` file with the following content:
 
    ```
    PORT=3000
    MONGO_URI=mongodb://localhost:27017/urlshortener
-   LOGGING_API=http://20.244.56.144/evaluation-service/logs
    ```
 
-4. Start the development server:
+5. Start the development server:
    ```
    npm run dev
    ```
@@ -92,11 +97,10 @@ A full-stack URL shortener application with detailed analytics and centralized l
    npm install
    ```
 
-3. Create a `.env` file with the following content:
+3. Link the logging-middleware package:
 
    ```
-   REACT_APP_API_BASE_URL=http://localhost:3000
-   REACT_APP_LOGGING_API=http://20.244.56.144/evaluation-service/logs
+   npm link ../logging-middleware
    ```
 
 4. Start the development server:
@@ -122,3 +126,41 @@ A full-stack URL shortener application with detailed analytics and centralized l
 - **Backend**: Node.js, Express, TypeScript, MongoDB
 - **Frontend**: React, TypeScript, Material UI
 - **Logging**: Custom middleware sending logs to API endpoint
+
+## Implementation Details
+
+### Logging Middleware
+
+The logging middleware is implemented as a reusable TypeScript package that can be used in both frontend and backend applications. It sends logs to the specified API endpoint with the following structure:
+
+```typescript
+interface Log {
+  stack: "backend" | "frontend";
+  level: "debug" | "info" | "warn" | "error" | "fatal";
+  package: string; // Package name (controller, service, etc.)
+  message: string; // Log message
+}
+```
+
+The middleware ensures that all logs are sent with the appropriate authorization token and follows the required naming conventions for stack, level, and package names.
+
+### Backend Implementation
+
+The backend is implemented using Express and TypeScript with the following components:
+
+- **Controllers**: Handle HTTP requests and responses
+- **Models**: Define MongoDB schemas and interfaces
+- **Routes**: Define API endpoints
+- **Utils**: Helper functions for URL shortening
+
+### Frontend Implementation
+
+The frontend is implemented using React, TypeScript, and Material UI with the following components:
+
+- **URL Shortener**: Allow users to shorten up to 5 URLs at once
+- **URL Statistics**: Display analytics for shortened URLs
+- **API Service**: Communicate with the backend API
+
+## Testing
+
+The application has been tested on both desktop and mobile devices to ensure a responsive user experience.

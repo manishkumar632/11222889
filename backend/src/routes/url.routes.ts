@@ -4,12 +4,8 @@ import {
   redirectToUrl,
   getUrlStats,
 } from "../controllers/url.controller";
-import { loggerMiddleware } from "../middlewares/logger.middleware";
 
 const router = Router();
-
-// Apply logger middleware to all routes
-router.use(loggerMiddleware);
 
 // Create a shortened URL
 router.post("/shorturl", createShortUrl);
