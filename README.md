@@ -4,10 +4,18 @@ A full-stack URL shortener application with detailed analytics and centralized l
 
 ## Project Structure
 
+- `/logging-middleware` - Shared logging package for both backend and frontend
 - `/backend` - Express/TypeScript backend API
 - `/frontend` - React/TypeScript frontend application
 
 ## Features
+
+### Logging Middleware
+
+- Standardized logging levels (debug, info, warn, error, fatal)
+- Support for both frontend and backend applications
+- Express middleware for request/response logging
+- Configurable logging endpoint
 
 ### Backend
 
@@ -23,6 +31,25 @@ A full-stack URL shortener application with detailed analytics and centralized l
 - Responsive Material UI design
 
 ## Setup Instructions
+
+### Logging Middleware
+
+1. Navigate to the logging-middleware directory:
+
+   ```
+   cd logging-middleware
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Build the package:
+   ```
+   npm run build
+   ```
 
 ### Backend
 
@@ -43,7 +70,7 @@ A full-stack URL shortener application with detailed analytics and centralized l
    ```
    PORT=3000
    MONGO_URI=mongodb://localhost:27017/urlshortener
-   LOGGING_API=http://20.244.55.144/evaluation-service/logs
+   LOGGING_API=http://20.244.56.144/evaluation-service/logs
    ```
 
 4. Start the development server:
@@ -69,7 +96,7 @@ A full-stack URL shortener application with detailed analytics and centralized l
 
    ```
    REACT_APP_API_BASE_URL=http://localhost:3000
-   REACT_APP_LOGGING_API=http://20.244.55.144/evaluation-service/logs
+   REACT_APP_LOGGING_API=http://20.244.56.144/evaluation-service/logs
    ```
 
 4. Start the development server:

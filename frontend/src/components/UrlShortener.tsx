@@ -6,7 +6,6 @@ import {
   Typography,
   Alert,
   Paper,
-  Grid,
   IconButton,
   Tooltip,
   CircularProgress,
@@ -203,9 +202,8 @@ const UrlShortener: React.FC = () => {
       // Save to local storage for history
       const shortCodes = responses.map((res) => res.shortCode);
       const existingCodes = localStorage.getItem("shortUrlHistory");
-      const allCodes = existingCodes
-        ? [...new Set([...JSON.parse(existingCodes), ...shortCodes])]
-        : shortCodes;
+      const parsedCodes = existingCodes ? JSON.parse(existingCodes) : [];
+      const allCodes = Array.from(new Set([...parsedCodes, ...shortCodes]));
       localStorage.setItem("shortUrlHistory", JSON.stringify(allCodes));
     } catch (error) {
       Logger.error(
@@ -258,8 +256,8 @@ const UrlShortener: React.FC = () => {
             key={index}
             sx={{ mb: 3, p: 2, border: "1px solid #e0e0e0", borderRadius: 1 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Box>
                 <TextField
                   fullWidth
                   label="URL to shorten"
@@ -270,44 +268,51 @@ const UrlShortener: React.FC = () => {
                   helperText={formErrors[index]?.url}
                   required
                 />
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Validity (minutes, optional)"
-                  variant="outlined"
-                  type="number"
-                  value={form.validity || ""}
-                  onChange={(e) =>
-                    updateForm(index, "validity", e.target.value)
-                  }
-                  error={!!formErrors[index]?.validity}
-                  helperText={
-                    formErrors[index]?.validity || "Default: 30 minutes"
-                  }
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Custom shortcode (optional)"
-                  variant="outlined"
-                  value={form.shortcode || ""}
-                  onChange={(e) =>
-                    updateForm(index, "shortcode", e.target.value)
-                  }
-                  error={!!formErrors[index]?.shortcode}
-                  helperText={
-                    formErrors[index]?.shortcode ||
-                    "4-12 alphanumeric characters"
-                  }
-                />
-              </Grid>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  gap: 2,
+                }}
+              >
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    label="Validity (minutes, optional)"
+                    variant="outlined"
+                    type="number"
+                    value={form.validity || ""}
+                    onChange={(e) =>
+                      updateForm(index, "validity", e.target.value)
+                    }
+                    error={!!formErrors[index]?.validity}
+                    helperText={
+                      formErrors[index]?.validity || "Default: 30 minutes"
+                    }
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <TextField
+                    fullWidth
+                    label="Custom shortcode (optional)"
+                    variant="outlined"
+                    value={form.shortcode || ""}
+                    onChange={(e) =>
+                      updateForm(index, "shortcode", e.target.value)
+                    }
+                    error={!!formErrors[index]?.shortcode}
+                    helperText={
+                      formErrors[index]?.shortcode ||
+                      "4-12 alphanumeric characters"
+                    }
+                  />
+                </Box>
+              </Box>
 
               {urlForms.length > 1 && (
-                <Grid item xs={12} sx={{ textAlign: "right" }}>
+                <Box sx={{ textAlign: "right" }}>
                   <Button
                     variant="outlined"
                     color="error"
@@ -316,9 +321,9 @@ const UrlShortener: React.FC = () => {
                   >
                     Remove
                   </Button>
-                </Grid>
+                </Box>
               )}
-            </Grid>
+            </Box>
           </Box>
         ))}
 
@@ -361,18 +366,14 @@ const UrlShortener: React.FC = () => {
               elevation={1}
               sx={{ p: 2, mb: 2, backgroundColor: "#f5f5f5" }}
             >
-              <Grid container spacing={1}>
-                <Grid item xs={12}>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                <Box>
                   <Typography variant="subtitle1" component="div">
                     Original URL: {result.originalUrl}
                   </Typography>
-                </Grid>
+                </Box>
 
-                <Grid
-                  item
-                  xs={12}
-                  sx={{ display: "flex", alignItems: "center" }}
-                >
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography
                     variant="subtitle1"
                     component="div"
@@ -388,22 +389,22 @@ const UrlShortener: React.FC = () => {
                       <ContentCopyIcon />
                     </IconButton>
                   </Tooltip>
-                </Grid>
+                </Box>
 
-                <Grid item xs={12}>
+                <Box>
                   <Typography variant="body2" color="text.secondary">
                     Expires at: {formatExpiryDate(result.expiresAt)}
                   </Typography>
-                </Grid>
+                </Box>
 
                 {result.isCustom && (
-                  <Grid item xs={12}>
+                  <Box>
                     <Typography variant="body2" color="primary">
                       Custom shortcode: {result.shortCode}
                     </Typography>
-                  </Grid>
+                  </Box>
                 )}
-              </Grid>
+              </Box>
             </Paper>
           ))}
         </Box>
