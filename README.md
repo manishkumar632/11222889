@@ -2,7 +2,17 @@
 
 A full-stack URL shortener application with analytics and centralized logging capabilities. The application allows users to create shortened URLs with custom shortcodes and expiry times, and provides detailed analytics on URL visits.
 
-![URL Shortener Screenshot 1](https://github.com/manishkumar632/images/blob/51dcf5d02f7d666f2099edf68576c18be60366ed/Screenshot%20(67).png)
+## Screenshots
+
+![URL Shortener Screenshot 1](<https://github.com/manishkumar632/images/blob/51dcf5d02f7d666f2099edf68576c18be60366ed/Screenshot%20(67).png>)
+
+![URL Shortener Screenshot 2](<https://github.com/manishkumar632/images/blob/51dcf5d02f7d666f2099edf68576c18be60366ed/Screenshot%20(68).png>)
+
+![URL Shortener Screenshot 3](screenshots/screenshot3.png)
+
+![URL Shortener Screenshot 4](screenshots/screenshot4.png)
+
+![URL Shortener Screenshot 5](screenshots/screenshot5.png)
 
 ## Features
 
@@ -11,8 +21,6 @@ A full-stack URL shortener application with analytics and centralized logging ca
 - **Custom Expiry Times**: Set custom validity periods for URLs
 - **Centralized Logging**: Shared logging middleware for both frontend and backend
 - **Responsive UI**: Modern Material UI design that works on all devices
-
-![URL Shortener Screenshot 2](screenshots/screenshot2.png)
 
 ## Technology Stack
 
@@ -32,8 +40,6 @@ A full-stack URL shortener application with analytics and centralized logging ca
 
 - Custom logging-middleware package
 - Centralized logging to evaluation server
-
-![URL Shortener Screenshot 3](screenshots/screenshot3.png)
 
 ## Project Structure
 
@@ -66,8 +72,6 @@ url-shortener/
     ├── package.json
     └── tsconfig.json
 ```
-
-![URL Shortener Screenshot 4](screenshots/screenshot4.png)
 
 ## API Endpoints
 
@@ -138,8 +142,6 @@ npm start
 3. Access the application:
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:3001
-
-![URL Shortener Screenshot 5](screenshots/screenshot5.png)
 
 ## Usage
 
