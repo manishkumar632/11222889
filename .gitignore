@@ -1,0 +1,17 @@
+# gitignore for MERN
+# Node modules
+node_modules/
+# Build output
+build/
+# Logs
+logs/
+# Environment variables
+.env
+# Dependency directories
+jspm_packages/
+# Coverage directory used by tools like istanbul
+coverage/
+# Next.js build output
+.next/
+# Nuxt.js build output
+.nuxt/
