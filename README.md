@@ -10,9 +10,8 @@ A full-stack URL shortener application with analytics and centralized logging ca
 
 ![URL Shortener Screenshot 3](https://github.com/manishkumar632/images/blob/51dcf5d02f7d666f2099edf68576c18be60366ed/Screenshot%20(69).png)
 
-![URL Shortener Screenshot 4](screenshots/screenshot4.png)
+![URL Shortener Screenshot 4](https://github.com/manishkumar632/images/blob/51dcf5d02f7d666f2099edf68576c18be60366ed/Screenshot%20(66).png)
 
-![URL Shortener Screenshot 5](screenshots/screenshot5.png)
 
 ## Features
 
